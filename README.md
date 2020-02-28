@@ -1,4 +1,4 @@
-# Intro 
+# Intro
 
 Code accompanying the SIGGRAPH 2018 paper:
 "DeepMimic: Example-Guided Deep Reinforcement Learning of Physics-Based Character Skills".
@@ -24,36 +24,38 @@ C++:
 - Bullet 2.88 (https://github.com/bulletphysics/bullet3/releases)
 
   Download Bullet 2.88 from the above link and install using the following commands.
-  
+
 	``./build_cmake_pybullet_double.sh``
-	
+
 	``cd build_cmake``
-	
+
 	``sudo make install``
 
 - Eigen (http://www.eigen.tuxfamily.org/index.php?title=Main_Page) (Version : 3.3.7)
 
 	``mkdir build``
-	
+
+	``cd build``
+
 	``cmake ..``
-	
+
 	``sudo make install``
 
 - OpenGL >= 3.2
 - freeglut (http://freeglut.sourceforge.net/) ( Version : 3.0.0 )
 
 	``cmake .``
-	
+
 	``make``
-	
+
 	``sudo make install``
-  
+
 - glew (http://glew.sourceforge.net/) ( Version : 2.1.0 )
 
 	``make``
-	
+
 	``sudo make install``
-	
+
 	``make clean``
 
 Misc:
@@ -61,12 +63,12 @@ Misc:
 - SWIG (http://www.swig.org/) ( Version : 4.0.0 )
 
 	``./configure --without-pcre``
-	
+
 	``make``
-	
+
 	``sudo make install``
 
-- MPI 
+- MPI
 	- Windows: https://docs.microsoft.com/en-us/message-passing-interface/microsoft-mpi
 	- Linux: `sudo apt install libopenmpi-dev`
 
@@ -74,13 +76,13 @@ Misc:
 Python:
 
 - Python 3
-- PyOpenGL (http://pyopengl.sourceforge.net/) 
+- PyOpenGL (http://pyopengl.sourceforge.net/)
 
 ``pip install PyOpenGL PyOpenGL_accelerate``
 
 - Tensorflow (https://www.tensorflow.org/) ( Vesrion : 1.13.1 )
 
-``pip install tensorflow`` 
+``pip install tensorflow``
 - MPI4Py (https://mpi4py.readthedocs.io/en/stable/install.html)
 
 ``pip install mpi4py``
@@ -123,7 +125,7 @@ This should generate `DeepMimicCore.py` in `DeepMimicCore/`
 
 ## How to Use
 Once the python wrapper has been built, training is done entirely in python using Tensorflow.
-`DeepMimic.py` runs the visualizer used to view the simulation. Training is done with `mpi_run.py`, 
+`DeepMimic.py` runs the visualizer used to view the simulation. Training is done with `mpi_run.py`,
 which uses MPI to parallelize training across multiple processes.
 
 `DeepMimic.py` is run by specifying an argument file that provides the configurations for a scene.
@@ -152,8 +154,8 @@ It typically takes about 60 millions samples to train one policy, which can take
 when training with 16 workers. 16 workers is likely the max number of workers that the
 framework can support, and it can get overwhelmed if too many workers are used.
 
-A number of argument files are already provided in `args/` for the different skills. 
-`train_[something]_args.txt` files are setup for `mpi_run.py` to train a policy, and 
+A number of argument files are already provided in `args/` for the different skills.
+`train_[something]_args.txt` files are setup for `mpi_run.py` to train a policy, and
 `run_[something]_args.txt` files are setup for `DeepMimic.py` to run one of the pretrained policies.
 To run your own policies, take one of the `run_[something]_args.txt` files and specify
 the policy you want to run with `--model_file`. Make sure that the reference motion `--motion_file`
@@ -173,7 +175,7 @@ corresponds to the motion that your policy was trained for, otherwise the policy
 
 
 ## Mocap Data
-Mocap clips are located in `data/motions/`. To play a clip, first modify 
+Mocap clips are located in `data/motions/`. To play a clip, first modify
 `args/play_motion_humanoid3d_args.txt` and specify the file to play with
 `--motion_file`, then run
 ```
@@ -217,5 +219,5 @@ ln /path/to/libGLEW.so.2.1 /usr/lib/x86----/libGLEW.so.2.1
 ln /path/to/libGLEW.so.2.1.0 /usr/lib/x86----/libGLEW.so.2.1.0
 
 ImportError: libBulletDynamics.so.2.88: cannot open shared object file: No such file or directory
-export LD_LIBRARY_PATH=/usr/local/lib/ ( can be temporary when run in terminal) 
+export LD_LIBRARY_PATH=/usr/local/lib/ ( can be temporary when run in terminal)
 (libBullet file are present in that path - gets installed in that path after the command sudo make install while installing Bullet)
